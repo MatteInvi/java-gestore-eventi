@@ -1,8 +1,11 @@
 package org.milestone.java.eventi;
 
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.zip.DataFormatException;
 
 public class Evento {
     private String titolo;
@@ -13,7 +16,7 @@ public class Evento {
     public Evento(String titolo, LocalDate data, int nPostiTotali) throws Exception {
         this.titolo = titolo;
         this.data = data;
-        // setData(this.data);
+        setData(this.data);
         this.nPostiTotali = nPostiTotali;
         setNPostiTotali(this.nPostiTotali);
         this.nPostiPrenotati = 0;
@@ -69,33 +72,33 @@ public class Evento {
         this.nPostiPrenotati = nPostiPrenotati;
     }
 
-    public void prenota(int postiDaAggiungere) throws Exception, DateTimeException{
-        LocalDate dataCorrente = LocalDate.now();
-         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
-       
-        if (nPostiPrenotati >= nPostiTotali) {
-            throw new Exception();
-           
-        } 
-        if (dataCorrente.isAfter(this.data)){
-   
+    public void prenota(int postiDaAggiungere) throws Exception {
+        nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
+
+      
+        if (nPostiPrenotati > nPostiTotali) {
+            throw new Exception("Non ci sono posti disponibili");
         }
+
     }
 
     public void disdici(int postiDaTogliere) throws Exception {
-        LocalDate dataCorrente = LocalDate.now();
 
-        if (nPostiPrenotati == 0 || dataCorrente.isAfter(this.data) || nPostiPrenotati < postiDaTogliere) {
-            throw new Exception(
-                    "Non ci sono prenotazioni o l'evento è passato o i posti da togliere sono maggiori dei prenotati");
+        if (postiDaTogliere == 0) {
+            throw new Exception("Non puoi inserire 0 posti");
+        } else if (nPostiPrenotati < postiDaTogliere) {
+            throw new Exception("Non puoi eliminare più posti di quelli che hai prenotato");
         } else {
             nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
         }
     }
-
+    @Override
     public String toString() {
-        return "Questi sono i dati:" + this.titolo + " " + this.data + " Posti totali " + getNPostiTotali()
-                + " Posti prenotati " + getNPostiPrenotati();
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    String dataFormattata = this.data.format(formatter);    
+    return "Data evento: " + dataFormattata + " Titolo: " + this.titolo;
+        // return "Questi sono i dati:" + this.titolo + " " + this.data + " Posti totali " + getNPostiTotali()
+        //         + " Posti prenotati " + getNPostiPrenotati();
     }
 
 }
