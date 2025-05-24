@@ -1,26 +1,28 @@
 package org.milestone.java.eventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
         String risposta;
-        int nPostiDaAggiungere = 0;
 
         Evento mioEvento = new Evento("La mia storia", LocalDate.of(2110, 05, 19), 200);
-
+        Concerto mioConcerto = new Concerto(LocalTime.of(21, 00), 50, "Concerto di natale", LocalDate.of(2026, 12, 25),
+                100);
+        System.out.println(mioConcerto);
         Scanner scanner = new Scanner(System.in);
 
-// Richieste di prenotazioni
+        // Richieste di prenotazioni
         System.out.println("Vuoi prenotare dei posti? si/no");
         risposta = scanner.nextLine();
 
         while (risposta.equals("si")) {
 
             System.out.println("QUanti posti vuoi prenotare?");
-            nPostiDaAggiungere = Integer.parseInt(scanner.nextLine());
+            int nPostiDaAggiungere = Integer.parseInt(scanner.nextLine());
             mioEvento.prenota(nPostiDaAggiungere);
             System.out.println("Vuoi prenotare dei posti? si/no");
             risposta = scanner.nextLine();
@@ -28,12 +30,13 @@ public class Main {
         }
 
         System.out.println("I posti prenotati sono: " + mioEvento.getNPostiPrenotati());
-        System.out.println(("I posti rimanenti sono: " + (mioEvento.getNPostiTotali() - mioEvento.getNPostiPrenotati())));
+        System.out
+                .println(("I posti rimanenti sono: " + (mioEvento.getNPostiTotali() - mioEvento.getNPostiPrenotati())));
 
         System.out.println("Vuoi disdire delle prenotazioni?");
         risposta = scanner.nextLine();
 
-// Richieste di disdette
+        // Richieste di disdette
         while (risposta.equals("si")) {
 
             System.out.println("Inserire il numero di posti da disdire");
@@ -45,7 +48,8 @@ public class Main {
         }
 
         System.out.println("I posti prenotati sono: " + mioEvento.getNPostiPrenotati());
-        System.out.println(("I posti rimanenti sono: " + (mioEvento.getNPostiTotali() - mioEvento.getNPostiPrenotati())));
+        System.out
+                .println(("I posti rimanenti sono: " + (mioEvento.getNPostiTotali() - mioEvento.getNPostiPrenotati())));
 
         scanner.close();
 
