@@ -1,11 +1,7 @@
 package org.milestone.java.eventi;
 
-import java.text.DateFormat;
-import java.text.NumberFormat;
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.zip.DataFormatException;
 
 public class Evento {
     private String titolo;
@@ -44,18 +40,10 @@ public class Evento {
         }
     }
 
-    public boolean esistonoPosti() {
-        if (this.nPostiTotali <= 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
     public void setNPostiTotali(int nPostiTotali) throws Exception {
-        if (esistonoPosti() == true) {
+        if (this.nPostiTotali > 0) {
             this.nPostiTotali = nPostiTotali;
-        } else if (esistonoPosti() == false) {
+        } else {
             throw new Exception("I posti non possono essere inferiori a 1");
         }
     }
@@ -75,7 +63,6 @@ public class Evento {
     public void prenota(int postiDaAggiungere) throws Exception {
         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
 
-      
         if (nPostiPrenotati > nPostiTotali) {
             throw new Exception("Non ci sono posti disponibili");
         }
@@ -92,13 +79,15 @@ public class Evento {
             nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
         }
     }
+
     @Override
     public String toString() {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    String dataFormattata = this.data.format(formatter);    
-    return "Data evento: " + dataFormattata + " Titolo: " + this.titolo;
-        // return "Questi sono i dati:" + this.titolo + " " + this.data + " Posti totali " + getNPostiTotali()
-        //         + " Posti prenotati " + getNPostiPrenotati();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataFormattata = this.data.format(formatter);
+        return "Data evento: " + dataFormattata + " Titolo: " + this.titolo;
+        // return "Questi sono i dati:" + this.titolo + " " + this.data + " Posti totali
+        // " + getNPostiTotali()
+        // + " Posti prenotati " + getNPostiPrenotati();
     }
 
 }
