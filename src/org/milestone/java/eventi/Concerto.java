@@ -1,14 +1,16 @@
 package org.milestone.java.eventi;
 
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class Concerto extends Evento {
 
+    public static Object scanner;
     private LocalTime ora;
-    private float prezzo;
+    private Float prezzo;
 
-    public Concerto(LocalTime ora, float prezzo, String titolo, LocalDate data, int nPostiTotali) throws Exception {
+    public Concerto(LocalTime ora, Float prezzo, String titolo, LocalDate data, int nPostiTotali) throws Exception {
 
         this.ora = ora;
         this.prezzo = prezzo;
@@ -24,17 +26,17 @@ public class Concerto extends Evento {
         this.ora = ora;
     }
 
-    public float getPrezzo() {
+    public Float getPrezzo() {
         return this.prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(Float prezzo) {
         this.prezzo = prezzo;
     }
 
     @Override
     public String toString() {
-        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + this.prezzo;
+        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + String.format("%.2f€", this.prezzo) + "€";
     }
 
 }
