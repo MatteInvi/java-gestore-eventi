@@ -1,6 +1,5 @@
 package org.milestone.java.eventi;
 
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -36,7 +35,8 @@ public class Concerto extends Evento {
 
     @Override
     public String toString() {
-        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + String.format("%.2f€", this.prezzo) + "€";
+        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + String.format("%.2f€", this.prezzo)
+                + "€";
     }
 
 }

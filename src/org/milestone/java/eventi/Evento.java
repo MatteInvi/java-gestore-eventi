@@ -67,7 +67,7 @@ public class Evento {
 
         if (nPostiPrenotati > nPostiTotali) {
             throw new Exception("Non ci sono posti disponibili");
-        } else if (postiDaAggiungere <= 0){
+        } else if (postiDaAggiungere <= 0) {
             throw new Exception("Non puoi inserire un numero inferiore di 1");
         }
 

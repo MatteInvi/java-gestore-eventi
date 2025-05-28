@@ -1,6 +1,5 @@
 package org.milestone.java.eventi;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -12,15 +11,15 @@ public class Main {
         int postiRimanenti = 0;
         String tipoEvento;
 
-
-
         Scanner scanner = new Scanner(System.in);
         // Richiesta del tipo di evento (evento/concerto)
 
-        System.out.println("Che tipo di evento vuoi creare? (evento o concerto)");
-        tipoEvento = scanner.nextLine();
+        do {
+            System.out.println("Che tipo di evento vuoi creare? (evento o concerto)");
+            tipoEvento = scanner.nextLine();
+        } while ((!tipoEvento.equals("evento")) || (!tipoEvento.equals("concerto")));
 
-        // Creazione nuovo evento/concerto
+        // Creazione nuovo evento/concertoe
         System.out.println("Inserisci il titolo: ");
         String titolo = scanner.nextLine();
         System.out.println("Inserisci il giorno: ");
@@ -41,10 +40,9 @@ public class Main {
             Concerto nuovoEvento = new Concerto(LocalTime.of(oraEvento, minutoEvento), prezzo, titolo,
                     LocalDate.of(annoEvento, meseEvento, giornoEvento), postiTotali);
 
-
             // Richieste di prenotazioni
 
-          System.out.println("Vuoi prenotare dei posti? si/no");
+            System.out.println("Vuoi prenotare dei posti? si/no");
             risposta = scanner.nextLine();
 
             while (risposta.equals("si")) {
@@ -127,7 +125,6 @@ public class Main {
 
             System.out.println(nuovoEvento);
         }
-    
 
         scanner.close();
 
