@@ -1,6 +1,7 @@
 package org.milestone.java.eventi;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class MainStep4 {
 
@@ -21,7 +22,11 @@ public class MainStep4 {
         }
 
         // Indicazione degli eventi in una determinata data
-        programma.EventiInData(LocalDate.of(2027, 12, 25));
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Inserire la data degli eventi che si vogliono visualizzare: anno..mese..giorno ");
+         programma.EventiInData(LocalDate.of(Integer.parseInt(scanner.nextLine()), Integer.parseInt(scanner.nextLine()),Integer.parseInt(scanner.nextLine())));
+
+        scanner.close();
 
         // Indicazione del numeri di eventi caricati
         System.out.println(programma.NumeroEventiPresenti());

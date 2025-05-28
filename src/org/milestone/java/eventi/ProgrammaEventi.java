@@ -16,7 +16,6 @@ public class ProgrammaEventi {
 
     public void AggiungiEvento(Evento eventoDaAggiungere) {
         eventi.add(eventoDaAggiungere);
-
     }
 
     public void EventiInData(LocalDate dataInserita) {
