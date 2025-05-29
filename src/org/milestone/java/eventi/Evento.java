@@ -2,7 +2,6 @@ package org.milestone.java.eventi;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import org.milestone.java.eventi.exceptions.ExceptionDataPassata;
 
 public class Evento {

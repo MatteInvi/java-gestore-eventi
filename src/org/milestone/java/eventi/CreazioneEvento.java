@@ -34,8 +34,7 @@ public class CreazioneEvento {
             System.out.println("Inserisci il prezzo: ");
             Float prezzo = Float.parseFloat(scanner.nextLine());
 
-
-            //Creazione evento di tipo concerto
+            // Creazione evento di tipo concerto
             Concerto nuovoEvento = new Concerto(LocalTime.of(oraEvento, minutoEvento), prezzo, titolo,
                     LocalDate.of(annoEvento, meseEvento, giornoEvento), postiTotali);
 
@@ -80,10 +79,11 @@ public class CreazioneEvento {
 
             System.out.println(nuovoEvento);
 
-        } 
-            
-        //Creazione evento generico
-       else { Evento nuovoEvento = new Evento(titolo, LocalDate.of(annoEvento, meseEvento, giornoEvento),
+        }
+
+        // Creazione evento generico
+        else {
+            Evento nuovoEvento = new Evento(titolo, LocalDate.of(annoEvento, meseEvento, giornoEvento),
                     postiTotali);
             // Richieste di prenotazioni
 
@@ -125,9 +125,9 @@ public class CreazioneEvento {
                     .println("I posti rimanenti sono: " + postiRimanenti);
 
             System.out.println(nuovoEvento);
-        
 
-          }  scanner.close();
+        }
+        scanner.close();
 
     }
 }

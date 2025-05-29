@@ -2,6 +2,8 @@ package org.milestone.java.eventi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProgrammaEventi {
@@ -25,8 +27,11 @@ public class ProgrammaEventi {
             if (eventi.get(i).getData().isEqual(dataInserita)) {
 
                 System.out.println("- " + eventi.get(i));
+
             }
+
         }
+
     }
 
     public String NumeroEventiPresenti() {
@@ -37,12 +42,16 @@ public class ProgrammaEventi {
         eventi.clear();
     }
 
-    @Override
-    public String toString() {
-        return "ProgrammaEventi{" +
-                "titolo='" + titolo + '\'' +
-                ", eventi=" + eventi +
-                '}';
+    public void mettiInOrdine() {
+        Collections.sort(eventi, new Comparator<Evento>() {
+
+            @Override
+            public int compare(Evento e1, Evento e2) {
+                return e1.getData().compareTo(e2.getData());
+            }
+
+        });
+
     }
 
 }
