@@ -7,7 +7,7 @@ public class MainStep4 {
 
     public static void main(String[] args) throws Exception {
         ProgrammaEventi programma = new ProgrammaEventi("Milestone 3");
-        Evento LSI = new Evento("La storia infinita", LocalDate.of(2027, 12, 25), 2000);
+        Evento LSI = new Evento("La storia infinita", LocalDate.of(2025, 06, 15), 2000);
         Evento pinocchio = new Evento("Pinocchio", LocalDate.of(2026, 12, 25), 200);
         Evento esame = new Evento("L'esame della milestone", LocalDate.of(2025, 06, 15), 2);
 
@@ -38,7 +38,7 @@ public class MainStep4 {
         System.out.println(programma.NumeroEventiPresenti());
 
         // Ordinamento per data
-        programma.mettiInOrdine();
+        programma.MettiInOrdine();
         System.out.println("----------LISTA IN ORDINE DI DATA----------");
         System.out.println("Programma:");
         for (Evento e : programma.eventi) {

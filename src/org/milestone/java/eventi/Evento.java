@@ -3,6 +3,8 @@ package org.milestone.java.eventi;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import org.milestone.java.eventi.exceptions.ExceptionDataPassata;
+import org.milestone.java.eventi.exceptions.ExceptionNumeroNonValido;
+import org.milestone.java.eventi.exceptions.ExceptionPostiEsauriti;
 
 public class Evento {
     private String titolo;
@@ -41,11 +43,11 @@ public class Evento {
         }
     }
 
-    private void setNPostiTotali(int nPostiTotali) throws Exception {
+    private void setNPostiTotali(int nPostiTotali) throws ExceptionNumeroNonValido {
         if (this.nPostiTotali > 0) {
             this.nPostiTotali = nPostiTotali;
         } else {
-            throw new Exception("I posti non possono essere inferiori a 1");
+            throw new ExceptionNumeroNonValido("I posti non possono essere inferiori a 1");
         }
     }
 
@@ -61,23 +63,23 @@ public class Evento {
         this.nPostiPrenotati = nPostiPrenotati;
     }
 
-    public void prenota(int postiDaAggiungere) throws Exception {
+    public void prenota(int postiDaAggiungere) throws ExceptionNumeroNonValido, ExceptionPostiEsauriti {
         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
 
         if (nPostiPrenotati > nPostiTotali) {
-            throw new Exception("Non ci sono posti disponibili");
+            throw new ExceptionPostiEsauriti("Non ci sono posti disponibili");
         } else if (postiDaAggiungere <= 0) {
-            throw new Exception("Non puoi inserire un numero inferiore di 1");
+            throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
         }
 
     }
 
-    public void disdici(int postiDaTogliere) throws Exception {
+    public void disdici(int postiDaTogliere) throws ExceptionNumeroNonValido {
 
         if (postiDaTogliere <= 0) {
-            throw new Exception("Non puoi inserire un numero inferiore di 1");
+            throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
         } else if (nPostiPrenotati < postiDaTogliere) {
-            throw new Exception("Non puoi eliminare più posti di quelli che hai prenotato");
+            throw new ExceptionNumeroNonValido("Non puoi eliminare più posti di quelli che hai prenotato");
         } else {
             nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
         }
