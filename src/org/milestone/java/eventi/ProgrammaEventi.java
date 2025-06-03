@@ -32,19 +32,21 @@ public class ProgrammaEventi {
             }
         }
         if (listInData.size() > 0) {
-            System.out.println(listInData);
+            for (int i = 0; i < listInData.size(); i++) {
+                System.out.println(listInData.get(i));
+            }
         } else {
             System.out.println("Non ci sono eventi in questa data");
         }
 
     }
 
-    // Totale event in programma
+    // Totale eventi in programma
     public String NumeroEventiPresenti() {
         if (eventi.size() > 0) {
             return "Sono presenti " + eventi.size() + " eventi in questo programma";
         } else {
-            return "Non ci sono eventi in questa lista";
+            return "Non ci sono eventi in questo programma";
         }
     }
 
@@ -55,16 +57,18 @@ public class ProgrammaEventi {
 
     // Sistemazione in ordine per data
     public void MettiInOrdine() {
-        eventi.sort((evento1, evento2) -> (evento1.getData()).compareTo(evento2.getData()));
+        // lambda...
+        // eventi.sort((evento1, evento2) ->
+        // (evento1.getData()).compareTo(evento2.getData()));
 
-        // Collections.sort(eventi, new Comparator<Evento>() {
+        Collections.sort(eventi, new Comparator<Evento>() {
 
-        // @Override
-        // public int compare(Evento e1, Evento e2) {
-        // return (e1.getData()).compareTo(e2.getData());
-        // }
+            @Override
+            public int compare(Evento e1, Evento e2) {
+                return (e1.getData()).compareTo(e2.getData());
+            }
 
-        // });
+        });
 
     }
 

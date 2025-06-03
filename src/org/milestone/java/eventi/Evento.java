@@ -43,16 +43,16 @@ public class Evento {
         }
     }
 
+    public int getNPostiTotali() {
+        return nPostiTotali;
+    }
+
     private void setNPostiTotali(int nPostiTotali) throws ExceptionNumeroNonValido {
         if (this.nPostiTotali > 0) {
             this.nPostiTotali = nPostiTotali;
         } else {
             throw new ExceptionNumeroNonValido("I posti non possono essere inferiori a 1");
         }
-    }
-
-    public int getNPostiTotali() {
-        return nPostiTotali;
     }
 
     public int getNPostiPrenotati() {
@@ -64,25 +64,32 @@ public class Evento {
     }
 
     public void prenota(int postiDaAggiungere) throws ExceptionNumeroNonValido, ExceptionPostiEsauriti {
+        if (postiDaAggiungere <= 0) {
+            throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
+        }
         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
 
         if (nPostiPrenotati > nPostiTotali) {
             throw new ExceptionPostiEsauriti("Non ci sono posti disponibili");
-        } else if (postiDaAggiungere <= 0) {
-            throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
         }
 
     }
 
     public void disdici(int postiDaTogliere) throws ExceptionNumeroNonValido {
-
         if (postiDaTogliere <= 0) {
             throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
-        } else if (nPostiPrenotati < postiDaTogliere) {
-            throw new ExceptionNumeroNonValido("Non puoi eliminare più posti di quelli che hai prenotato");
-        } else {
-            nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
         }
+
+        if (nPostiPrenotati == 0) {
+            throw new ExceptionNumeroNonValido("Non ci sono posti prenotati");
+        }
+
+        if (postiDaTogliere > nPostiPrenotati) {
+            throw new ExceptionNumeroNonValido("Non puoi disdire pià posti di quelli che hai prenotato");
+        }
+
+        nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
+
     }
 
     @Override

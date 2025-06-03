@@ -1,11 +1,12 @@
 package org.milestone.java.eventi;
 
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Locale;
 
 public class Concerto extends Evento {
 
-    public static Object scanner;
     private LocalTime ora;
     private Float prezzo;
 
@@ -35,8 +36,8 @@ public class Concerto extends Evento {
 
     @Override
     public String toString() {
-        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + String.format("%.2f€", this.prezzo)
-                + "€";
+        NumberFormat formattatore = NumberFormat.getCurrencyInstance(Locale.ITALY);
+        return "Ora evento: " + this.ora + " " + super.toString() + " Prezzo: " + formattatore.format(this.prezzo);
     }
 
 }
