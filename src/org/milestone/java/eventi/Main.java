@@ -4,18 +4,24 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class CreazioneEvento {
-    public static void main(String[] args) throws Exception {
+import org.milestone.java.eventi.exceptions.ExceptionDataPassata;
+import org.milestone.java.eventi.exceptions.ExceptionNessunaPrenotazione;
+import org.milestone.java.eventi.exceptions.ExceptionNumeroNonValido;
+import org.milestone.java.eventi.exceptions.ExceptionPostiEsauriti;
 
+public class Main {
+    public static void main(String[] args) throws Exception {
+    
         String risposta;
         int postiRimanenti = 0;
         Concerto nuovoConcerto = null;
         Evento nuovoEvento = null;
+        String tipoEvento = "";
 
         Scanner scanner = new Scanner(System.in);
 
-        // Creazione nuovo evento/concerto
-        System.out.println("Inserisci il titolo: ");
+    // Creazione nuovo evento/concerto
+try {   System.out.println("Inserisci il titolo: ");
         String titolo = scanner.nextLine();
         System.out.println("Inserisci il giorno: ");
         int giornoEvento = Integer.parseInt(scanner.nextLine());
@@ -26,7 +32,7 @@ public class CreazioneEvento {
         System.out.println("Inserisci i posti totali: ");
         int postiTotali = Integer.parseInt(scanner.nextLine());
         System.out.println("Questo evento è un concerto? (si/no)");
-        String tipoEvento = scanner.nextLine().toLowerCase();
+        tipoEvento = scanner.nextLine().toLowerCase();
         if (tipoEvento.equals("si")) {
             System.out.println("---------STAI AGGIUNGENDO UN CONCERTO-----------");
             System.out.println("Inserisci l'ora (da 0 a 23): ");
@@ -36,22 +42,22 @@ public class CreazioneEvento {
             System.out.println("Inserisci il prezzo: ");
             Float prezzo = Float.parseFloat(scanner.nextLine());
 
-            // Creazione evento di tipo concerto
+        // Creazione evento di tipo concerto
             nuovoConcerto = new Concerto(LocalTime.of(oraEvento, minutoEvento), prezzo, titolo,
                     LocalDate.of(annoEvento, meseEvento, giornoEvento), postiTotali);
 
-            // Creazione evento generico
+        // Creazione evento generico
         } else {
             nuovoEvento = new Evento(titolo, LocalDate.of(annoEvento, meseEvento, giornoEvento),
                     postiTotali);
 
-        }
+        } 
 
-        // Blocco richieste prenotazioni/disdette in base al tipo di evento
+    // Blocco richieste prenotazioni/disdette in base al tipo di evento
 
-        if (tipoEvento.equals("si")) {
-            // Richieste di prenotazioni concerto
+    if (tipoEvento.equals("si")) {
 
+        // Richieste di prenotazioni concerto
             System.out.println("Vuoi prenotare dei posti? si/no");
             risposta = scanner.nextLine().toLowerCase();
 
@@ -63,15 +69,14 @@ public class CreazioneEvento {
                 postiRimanenti = nuovoConcerto.getNPostiTotali() - nuovoConcerto.getNPostiPrenotati();
                 System.out.println("Vuoi prenotare altri posti? si/no");
                 risposta = scanner.nextLine();
-
             }
 
+        //Stampa posti prenotati e rimanenti
             System.out.println("I posti prenotati sono: " + nuovoConcerto.getNPostiPrenotati());
             System.out
                     .println("I posti rimanenti sono: " + postiRimanenti);
 
-            // Richieste di disdette concerto
-
+        // Richieste di disdette concerto
             System.out.println("Vuoi disdire delle prenotazioni? (si/no)");
             risposta = scanner.nextLine().toLowerCase();
 
@@ -86,15 +91,18 @@ public class CreazioneEvento {
 
             }
 
+        //Stampa posti prenotati e rimanenti
             System.out.println("I posti prenotati sono: " + nuovoConcerto.getNPostiPrenotati());
             System.out
                     .println("I posti rimanenti sono: " + postiRimanenti);
 
+
+        // Stampa concerto creato
             System.out.println(nuovoConcerto);
 
         } else {
-            // Richieste di prenotazioni evento generico
 
+        // Richieste di prenotazioni evento generico
             System.out.println("Vuoi prenotare dei posti? si/no");
             risposta = scanner.nextLine().toLowerCase();
 
@@ -109,12 +117,12 @@ public class CreazioneEvento {
 
             }
 
+        //Stampa posti prenotati e rimanenti
             System.out.println("I posti prenotati sono: " + nuovoEvento.getNPostiPrenotati());
             System.out
                     .println("I posti rimanenti sono: " + postiRimanenti);
 
-            // Richieste di disdette evento generico
-
+        // Richieste di disdette evento generico
             System.out.println("Vuoi disdire delle prenotazioni? (si/no)");
             risposta = scanner.nextLine().toLowerCase();
 
@@ -129,13 +137,27 @@ public class CreazioneEvento {
 
             }
 
+
+        //Stampa posti prenotati e rimanenti
             System.out.println("I posti prenotati sono: " + nuovoEvento.getNPostiPrenotati());
             System.out
                     .println("I posti rimanenti sono: " + postiRimanenti);
+            
 
+        // Stampa evento creato            
             System.out.println(nuovoEvento);
 
         }
+
+    } catch (ExceptionNessunaPrenotazione noReservations){
+        System.err.println(noReservations.getMessage());
+    } catch (ExceptionNumeroNonValido invalidN ){
+        System.err.println(invalidN.getMessage());
+    } catch (ExceptionPostiEsauriti soldOut){
+        System.err.println(soldOut.getMessage());
+    } catch (ExceptionDataPassata pastDate){
+        System.err.println(pastDate.getMessage());
+    }
 
         scanner.close();
 

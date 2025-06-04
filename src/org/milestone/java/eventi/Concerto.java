@@ -18,6 +18,8 @@ public class Concerto extends Evento {
 
     }
 
+// Gettere e Setter    
+
     public LocalTime getOra() {
         return this.ora;
     }
@@ -34,6 +36,7 @@ public class Concerto extends Evento {
         this.prezzo = prezzo;
     }
 
+//Override del metodo toString    
     @Override
     public String toString() {
         NumberFormat formattatore = NumberFormat.getCurrencyInstance(Locale.ITALY);

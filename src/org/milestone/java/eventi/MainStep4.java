@@ -7,12 +7,13 @@ public class MainStep4 {
 
     public static void main(String[] args) throws Exception {
         ProgrammaEventi programma = new ProgrammaEventi("Milestone 3");
-        Evento LSI = new Evento("La storia infinita", LocalDate.of(2025, 6, 15), 2000);
+        Evento LSI = new Evento("La storia infinita", LocalDate.of(2025, 6, 11), 2000);
         Evento pinocchio = new Evento("Pinocchio", LocalDate.of(2026, 12, 25), 200);
-        Evento esame = new Evento("L'esame della milestone", LocalDate.of(2025, 6, 15), 2);
-        
+        Evento esame = new Evento("L'esame della milestone", LocalDate.of(2025, 6, 11), 2);
+
         Scanner scanner = new Scanner(System.in);
-        // Aggiunta eventi nella lista *programma*
+
+    // Aggiunta eventi nella lista *programma* con stampa su terminale
         programma.AggiungiEvento(LSI);
         programma.AggiungiEvento(pinocchio);
         programma.AggiungiEvento(esame);
@@ -27,7 +28,7 @@ public class MainStep4 {
 
         scanner.nextLine();
 
-        // Indicazione degli eventi in una determinata data        
+    // Indicazione degli eventi in una determinata data
 
         System.out.println("Inserire la data degli eventi che si vogliono visualizzare: ");
         System.out.println("Giorno: ");
@@ -41,13 +42,13 @@ public class MainStep4 {
 
         scanner.nextLine();
 
-        // Indicazione del numeri di eventi caricati
+    // Indicazione del numeri di eventi caricati
         System.out.println("----------NUMERO DI EVENTI IN PROGRAMMA----------");
         System.out.println(programma.NumeroEventiPresenti());
 
         scanner.nextLine();
 
-        // Ordinamento per data
+    // Ordinamento per data
         programma.MettiInOrdine();
         System.out.println("----------LISTA IN ORDINE DI DATA----------");
         System.out.println("Programma:");
@@ -58,7 +59,7 @@ public class MainStep4 {
 
         scanner.nextLine();
 
-        // Svuota lista con prova
+    // Svuota lista con prova
         programma.SvuotaLista();
 
         System.out.println("----------LISTA SVUOTATA----------");

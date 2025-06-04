@@ -11,18 +11,17 @@ public class ProgrammaEventi {
     String titolo;
     List<Evento> eventi;
 
-    // Costruttore
     public ProgrammaEventi(String titolo) {
         this.titolo = titolo;
         eventi = new ArrayList<>();
     }
 
-    // Aggiungi evento
+// Aggiungi evento
     public void AggiungiEvento(Evento eventoDaAggiungere) {
         eventi.add(eventoDaAggiungere);
     }
 
-    // Ricerca per data
+// Ricerca per data
     public void EventiInData(LocalDate dataInserita) {
         List<Evento> listInData = new ArrayList<>();
         System.out.println("Eventi in questa data: ");
@@ -41,7 +40,7 @@ public class ProgrammaEventi {
 
     }
 
-    // Totale eventi in programma
+// Totale eventi in programma
     public String NumeroEventiPresenti() {
         if (eventi.size() > 0) {
             return "Sono presenti " + eventi.size() + " eventi in questo programma";
@@ -50,12 +49,12 @@ public class ProgrammaEventi {
         }
     }
 
-    // Elimina eventi in programma
+// Elimina eventi in programma
     public void SvuotaLista() {
         eventi.clear();
     }
 
-    // Sistemazione in ordine per data
+// Sistemazione in ordine per data
     public void MettiInOrdine() {
         // lambda...
         // eventi.sort((evento1, evento2) ->

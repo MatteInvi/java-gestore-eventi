@@ -3,6 +3,7 @@ package org.milestone.java.eventi;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import org.milestone.java.eventi.exceptions.ExceptionDataPassata;
+import org.milestone.java.eventi.exceptions.ExceptionNessunaPrenotazione;
 import org.milestone.java.eventi.exceptions.ExceptionNumeroNonValido;
 import org.milestone.java.eventi.exceptions.ExceptionPostiEsauriti;
 
@@ -21,6 +22,7 @@ public class Evento {
         this.nPostiPrenotati = 0;
     }
 
+// Getter e Setter (con eventuali controlli)
     public String getTitolo() {
         return this.titolo;
     }
@@ -63,9 +65,11 @@ public class Evento {
         this.nPostiPrenotati = nPostiPrenotati;
     }
 
+// Prenotazione posti
     public void prenota(int postiDaAggiungere) throws ExceptionNumeroNonValido, ExceptionPostiEsauriti {
         if (postiDaAggiungere <= 0) {
             throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
+
         }
         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
 
@@ -75,23 +79,20 @@ public class Evento {
 
     }
 
-    public void disdici(int postiDaTogliere) throws ExceptionNumeroNonValido {
+// Disdetta posti
+    public void disdici(int postiDaTogliere) throws ExceptionNumeroNonValido, ExceptionNessunaPrenotazione {
         if (postiDaTogliere <= 0) {
             throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
         }
-
-        if (nPostiPrenotati == 0) {
-            throw new ExceptionNumeroNonValido("Non ci sono posti prenotati");
-        }
-
+        
         if (postiDaTogliere > nPostiPrenotati) {
-            throw new ExceptionNumeroNonValido("Non puoi disdire pià posti di quelli che hai prenotato");
+            throw new ExceptionNessunaPrenotazione("Non puoi disdire più posti di quelli prenotati");
+        } else {
+            nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
         }
-
-        nPostiPrenotati = nPostiPrenotati - postiDaTogliere;
-
     }
 
+// Metodo toString
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
