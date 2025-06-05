@@ -17,12 +17,12 @@ public class ProgrammaEventi {
     }
 
 // Aggiungi evento
-    public void AggiungiEvento(Evento eventoDaAggiungere) {
+    public void aggiungiEvento(Evento eventoDaAggiungere) {
         eventi.add(eventoDaAggiungere);
     }
 
 // Ricerca per data
-    public void EventiInData(LocalDate dataInserita) {
+    public void eventiInData(LocalDate dataInserita) {
         List<Evento> listInData = new ArrayList<>();
         System.out.println("Eventi in questa data: ");
         for (int i = 0; i < eventi.size(); i++) {
@@ -41,7 +41,7 @@ public class ProgrammaEventi {
     }
 
 // Totale eventi in programma
-    public String NumeroEventiPresenti() {
+    public String numeroEventiPresenti() {
         if (eventi.size() > 0) {
             return "Sono presenti " + eventi.size() + " eventi in questo programma";
         } else {
@@ -50,12 +50,12 @@ public class ProgrammaEventi {
     }
 
 // Elimina eventi in programma
-    public void SvuotaLista() {
+    public void svuotaLista() {
         eventi.clear();
     }
 
 // Sistemazione in ordine per data
-    public void MettiInOrdine() {
+    public void mettiInOrdine() {
         // lambda...
         // eventi.sort((evento1, evento2) ->
         // (evento1.getData()).compareTo(evento2.getData()));

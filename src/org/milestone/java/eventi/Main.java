@@ -14,7 +14,7 @@ public class Main {
     
         String risposta;
         int postiRimanenti = 0;
-        Concerto nuovoConcerto = null;
+        // Evento nuovoConcerto = null; 
         Evento nuovoEvento = null;
         String tipoEvento = "";
 
@@ -43,7 +43,7 @@ try {   System.out.println("Inserisci il titolo: ");
             Float prezzo = Float.parseFloat(scanner.nextLine());
 
         // Creazione evento di tipo concerto
-            nuovoConcerto = new Concerto(LocalTime.of(oraEvento, minutoEvento), prezzo, titolo,
+            nuovoEvento = new Concerto(LocalTime.of(oraEvento, minutoEvento), prezzo, titolo,
                     LocalDate.of(annoEvento, meseEvento, giornoEvento), postiTotali);
 
         // Creazione evento generico
@@ -53,55 +53,9 @@ try {   System.out.println("Inserisci il titolo: ");
 
         } 
 
-    // Blocco richieste prenotazioni/disdette in base al tipo di evento
+    // Blocco richieste prenotazioni/disdette
 
-    if (tipoEvento.equals("si")) {
-
-        // Richieste di prenotazioni concerto
-            System.out.println("Vuoi prenotare dei posti? si/no");
-            risposta = scanner.nextLine().toLowerCase();
-
-            while (risposta.equals("si")) {
-
-                System.out.println("Quanti posti vuoi prenotare?");
-                int nPostiDaAggiungere = Integer.parseInt(scanner.nextLine());
-                nuovoConcerto.prenota(nPostiDaAggiungere);
-                postiRimanenti = nuovoConcerto.getNPostiTotali() - nuovoConcerto.getNPostiPrenotati();
-                System.out.println("Vuoi prenotare altri posti? si/no");
-                risposta = scanner.nextLine();
-            }
-
-        //Stampa posti prenotati e rimanenti
-            System.out.println("I posti prenotati sono: " + nuovoConcerto.getNPostiPrenotati());
-            System.out
-                    .println("I posti rimanenti sono: " + postiRimanenti);
-
-        // Richieste di disdette concerto
-            System.out.println("Vuoi disdire delle prenotazioni? (si/no)");
-            risposta = scanner.nextLine().toLowerCase();
-
-            while (risposta.equals("si")) {
-
-                System.out.println("Quanti posti vuoi disdire?");
-                int nPostiDaTogliere = Integer.parseInt(scanner.nextLine());
-                nuovoConcerto.disdici(nPostiDaTogliere);
-                postiRimanenti = (nuovoConcerto.getNPostiTotali() - nuovoConcerto.getNPostiPrenotati());
-                System.out.println("Vuoi disdire altre prenotazioni? (si/no)");
-                risposta = scanner.nextLine();
-
-            }
-
-        //Stampa posti prenotati e rimanenti
-            System.out.println("I posti prenotati sono: " + nuovoConcerto.getNPostiPrenotati());
-            System.out
-                    .println("I posti rimanenti sono: " + postiRimanenti);
-
-
-        // Stampa concerto creato
-            System.out.println(nuovoConcerto);
-
-        } else {
-
+ 
         // Richieste di prenotazioni evento generico
             System.out.println("Vuoi prenotare dei posti? si/no");
             risposta = scanner.nextLine().toLowerCase();
@@ -147,7 +101,6 @@ try {   System.out.println("Inserisci il titolo: ");
         // Stampa evento creato            
             System.out.println(nuovoEvento);
 
-        }
 
     } catch (ExceptionNessunaPrenotazione noReservations){
         System.err.println(noReservations.getMessage());

@@ -14,9 +14,9 @@ public class MainStep4 {
         Scanner scanner = new Scanner(System.in);
 
     // Aggiunta eventi nella lista *programma* con stampa su terminale
-        programma.AggiungiEvento(LSI);
-        programma.AggiungiEvento(pinocchio);
-        programma.AggiungiEvento(esame);
+        programma.aggiungiEvento(LSI);
+        programma.aggiungiEvento(pinocchio);
+        programma.aggiungiEvento(esame);
 
         System.out.println("----------LISTA EVENTI AGGIUNTI----------");
         System.out.println(programma.titolo);
@@ -38,18 +38,18 @@ public class MainStep4 {
         System.out.println("Anno:");
         int anno = Integer.parseInt(scanner.nextLine());
 
-        programma.EventiInData(LocalDate.of(anno, mese, giorno));
+        programma.eventiInData(LocalDate.of(anno, mese, giorno));
 
         scanner.nextLine();
 
     // Indicazione del numeri di eventi caricati
         System.out.println("----------NUMERO DI EVENTI IN PROGRAMMA----------");
-        System.out.println(programma.NumeroEventiPresenti());
+        System.out.println(programma.numeroEventiPresenti());
 
         scanner.nextLine();
 
     // Ordinamento per data
-        programma.MettiInOrdine();
+        programma.mettiInOrdine();
         System.out.println("----------LISTA IN ORDINE DI DATA----------");
         System.out.println("Programma:");
         for (Evento e : programma.eventi) {
@@ -60,7 +60,7 @@ public class MainStep4 {
         scanner.nextLine();
 
     // Svuota lista con prova
-        programma.SvuotaLista();
+        programma.svuotaLista();
 
         System.out.println("----------LISTA SVUOTATA----------");
         System.out.println(programma.titolo);
