@@ -14,7 +14,6 @@ public class Main {
     
         String risposta;
         int postiRimanenti = 0;
-        // Evento nuovoConcerto = null; 
         Evento nuovoEvento = null;
         String tipoEvento = "";
 

@@ -56,10 +56,6 @@ public class ProgrammaEventi {
 
 // Sistemazione in ordine per data
     public void mettiInOrdine() {
-        // lambda...
-        // eventi.sort((evento1, evento2) ->
-        // (evento1.getData()).compareTo(evento2.getData()));
-
         Collections.sort(eventi, new Comparator<Evento>() {
 
             @Override

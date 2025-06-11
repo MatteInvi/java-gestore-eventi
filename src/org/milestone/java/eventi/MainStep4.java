@@ -7,16 +7,20 @@ public class MainStep4 {
 
     public static void main(String[] args) throws Exception {
         ProgrammaEventi programma = new ProgrammaEventi("Milestone 3");
-        Evento LSI = new Evento("La storia infinita", LocalDate.of(2025, 6, 11), 2000);
-        Evento pinocchio = new Evento("Pinocchio", LocalDate.of(2026, 12, 25), 200);
-        Evento esame = new Evento("L'esame della milestone", LocalDate.of(2025, 6, 11), 2);
+        Evento LSI = new Evento("La storia infinita", LocalDate.of(2025, 6, 22), 2000);
+        Evento pinocchio = new Evento("Pinocchio", LocalDate.of(2026, 12, 25), 400);
+        Evento NSLS = new Evento("Notte sotto le stelle", LocalDate.of(2025, 6, 22), 2000);
+        Evento Capdanno = new Evento("Capdonaddo in piazza", LocalDate.of(2025, 12, 31), 20000);
+        Evento Fine = new Evento("Fine del mondo", LocalDate.of(2030, 12, 21), 1);
 
         Scanner scanner = new Scanner(System.in);
 
     // Aggiunta eventi nella lista *programma* con stampa su terminale
         programma.aggiungiEvento(LSI);
         programma.aggiungiEvento(pinocchio);
-        programma.aggiungiEvento(esame);
+        programma.aggiungiEvento(NSLS);
+        programma.aggiungiEvento(Capdanno);
+        programma.aggiungiEvento(Fine);
 
         System.out.println("----------LISTA EVENTI AGGIUNTI----------");
         System.out.println(programma.titolo);
@@ -44,6 +48,7 @@ public class MainStep4 {
 
     // Indicazione del numeri di eventi caricati
         System.out.println("----------NUMERO DI EVENTI IN PROGRAMMA----------");
+
         System.out.println(programma.numeroEventiPresenti());
 
         scanner.nextLine();

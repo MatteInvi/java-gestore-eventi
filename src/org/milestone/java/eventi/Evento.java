@@ -38,7 +38,7 @@ public class Evento {
     public void setData(LocalDate data) throws ExceptionDataPassata {
         LocalDate dataCorrente = LocalDate.now();
 
-        if (dataCorrente.isBefore(data)) {
+        if (data.isAfter(dataCorrente)) {
             this.data = data;
         } else {
             throw new ExceptionDataPassata("Non puoi creare un evento con una data già passata");
@@ -70,9 +70,9 @@ public class Evento {
         if (postiDaAggiungere <= 0) {
             throw new ExceptionNumeroNonValido("Non puoi inserire un numero inferiore di 1");
 
-        }
+        } else {
         nPostiPrenotati = nPostiPrenotati + postiDaAggiungere;
-
+        }
         if (nPostiPrenotati > nPostiTotali) {
             throw new ExceptionPostiEsauriti("Non ci sono posti disponibili");
         }
